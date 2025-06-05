@@ -18,13 +18,15 @@ async function handleSubmit() {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      projectName: "โครงการจากเว็บ",
-      startDateTime: "2025-06-05T08:00:00",
-      startLocation: "สำนักงานใหญ่",
-      startOdometer: 15000,
-      endDateTime: "2025-06-05T17:30:00",
-      endLocation: "โกดัง",
-      endOdometer: 15125
+  projectName: "โครงการทดสอบ",              // ✅ ตรงกับ doPost
+  startDateTime: "2025-06-05T08:00:00",
+  startLocation: "สำนักงานใหญ่",
+  startOdometer: 15000,
+  endDateTime: "2025-06-05T17:30:00",
+  endLocation: "โกดัง",
+  endOdometer: 15125
+})
+
     })
   });
 
