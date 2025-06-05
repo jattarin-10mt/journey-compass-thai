@@ -11,29 +11,6 @@ import DistanceDisplay from '@/components/DistanceDisplay';
 import SubmitButton from '@/components/SubmitButton';
 import UsageInstructions from '@/components/UsageInstructions';
 
-async function handleSubmit() {
-  const response = await fetch("https://script.google.com/macros/s/AKfycb.../exec", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      projectName: "โครงการทดลอง",
-      startDateTime: "2025-06-05T08:00:00",
-      startLocation: "สำนักงานใหญ่",
-      startMileage: 15000,
-      endDateTime: "2025-06-05T17:30:00",
-      endLocation: "โกดังสินค้า",
-      endMileage: 15125
-    }) // <- ปิด JSON.stringify ให้เรียบร้อย
-  }); // <- ปิด fetch ให้เรียบร้อย
-
-  const result = await response.text();
-  console.log("ผลลัพธ์จาก Google Apps Script:", result);
-}
-
-<button onClick={handleSubmit}>เพิ่มข้อมูล</button>
-
 
 const Index = () => {
   const {
@@ -83,6 +60,9 @@ const Index = () => {
           
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
+              <button type="submit" disabled={isSubmitting}>
+    {isSubmitting ? "กำลังบันทึก..." : "เพิ่มข้อมูล"}
+  </button>
               <GoogleSheetsUrlInput 
                 googleSheetsUrl={googleSheetsUrl}
                 setGoogleSheetsUrl={setGoogleSheetsUrl}
