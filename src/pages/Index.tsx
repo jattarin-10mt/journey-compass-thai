@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useTravelForm } from '@/hooks/useTravelForm';
@@ -11,7 +10,6 @@ import DistanceDisplay from '@/components/DistanceDisplay';
 import SubmitButton from '@/components/SubmitButton';
 import UsageInstructions from '@/components/UsageInstructions';
 
-
 const Index = () => {
   const {
     formData,
@@ -23,11 +21,13 @@ const Index = () => {
     toast
   } = useTravelForm();
 
-  const [googleSheetsUrl, setGoogleSheetsUrl] = useState('https://script.google.com/macros/s/AKfycbxj_aWX55d9o-dBCpA44KDIMkBuhnuFFBC9KDFUWCJNkakMP-iOkez5sR6lgjoJ9uHajQ/exec');
+  const [googleSheetsUrl, setGoogleSheetsUrl] = useState(
+    'https://script.google.com/macros/s/AKfycbxj_aWX55d9o-dBCpA44KDIMkBuhnuFFBC9KDFUWCJNkakMP-iOkez5sR6lgjoJ9uHajQ/exec'
+  );
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     const validationError = validateForm();
     if (validationError) {
       toast({
@@ -57,22 +57,22 @@ const Index = () => {
       <div className="container mx-auto px-4 max-w-4xl">
         <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
           <TravelFormHeader />
-          
+
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
-              <button type="submit" disabled={isSubmitting}>
-    {isSubmitting ? "กำลังบันทึก..." : "เพิ่มข้อมูล"}
-  </button>
+              {/* Input Google Sheets URL */}
               <GoogleSheetsUrlInput 
                 googleSheetsUrl={googleSheetsUrl}
                 setGoogleSheetsUrl={setGoogleSheetsUrl}
               />
 
+              {/* Input ชื่อโปรเจกต์ */}
               <ProjectNameInput
                 value={formData.projectName}
                 onChange={(value) => handleInputChange('projectName', value)}
               />
 
+              {/* จุดเริ่มต้น และ จุดสิ้นสุด */}
               <div className="grid md:grid-cols-2 gap-6">
                 <StartPointSection
                   startDateTime={formData.startDateTime}
@@ -93,15 +93,18 @@ const Index = () => {
                 />
               </div>
 
+              {/* แสดงระยะทาง */}
               <DistanceDisplay
                 distance={formData.distance}
                 startMileage={formData.startOdometer}
                 endMileage={formData.endOdometer}
               />
 
+              {/* ปุ่มส่งฟอร์ม */}
               <SubmitButton isSubmitting={isSubmitting} />
             </form>
 
+            {/* คำแนะนำการใช้งาน */}
             <UsageInstructions />
           </CardContent>
         </Card>
