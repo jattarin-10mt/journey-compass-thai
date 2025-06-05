@@ -11,6 +11,30 @@ import DistanceDisplay from '@/components/DistanceDisplay';
 import SubmitButton from '@/components/SubmitButton';
 import UsageInstructions from '@/components/UsageInstructions';
 
+async function handleSubmit() {
+  const response = await fetch("https://script.google.com/macros/s/AKfycbxj_aWX55d9o-dBCpA44KDIMkBuhnuFFBC9KDFUWCJNkakMP-iOkez5sR6lgjoJ9uHajQ/exec", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      projectName: "โครงการจากเว็บ",
+      startDateTime: "2025-06-05T08:00:00",
+      startLocation: "สำนักงานใหญ่",
+      startOdometer: 15000,
+      endDateTime: "2025-06-05T17:30:00",
+      endLocation: "โกดัง",
+      endOdometer: 15125
+    })
+  });
+
+  const result = await response.text();
+  console.log("ผลลัพธ์จาก Google Apps Script:", result);
+  
+}
+<button onClick={handleSubmit}>เพิ่มข้อมูล</button>
+
+
 const Index = () => {
   const {
     formData,
