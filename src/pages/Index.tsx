@@ -12,28 +12,26 @@ import SubmitButton from '@/components/SubmitButton';
 import UsageInstructions from '@/components/UsageInstructions';
 
 async function handleSubmit() {
-  const response = await fetch("https://script.google.com/macros/s/AKfycbxKw0IF1HnVlMCEUtIJCNLJwVVAsUOYvufYckX_G6-roOldggEpdprSZfpY0TIOr60Nhg/exec", {
+  const response = await fetch("https://script.google.com/macros/s/AKfycb.../exec", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-  projectName: "โครงการทดสอบ",              // ✅ ตรงกับ doPost
-  startDateTime: "2025-06-05T08:00:00",
-  startLocation: "สำนักงานใหญ่",
-  startOdometer: 15000,
-  endDateTime: "2025-06-05T17:30:00",
-  endLocation: "โกดัง",
-  endOdometer: 15125
-})
-
-    })
-  })
+      projectName: "โครงการทดลอง",
+      startDateTime: "2025-06-05T08:00:00",
+      startLocation: "สำนักงานใหญ่",
+      startMileage: 15000,
+      endDateTime: "2025-06-05T17:30:00",
+      endLocation: "โกดังสินค้า",
+      endMileage: 15125
+    }) // ✅ วงเล็บปิดของ JSON.stringify()
+  }); // ✅ วงเล็บปิดของ fetch()
 
   const result = await response.text();
   console.log("ผลลัพธ์จาก Google Apps Script:", result);
-  
 }
+
 <button onClick={handleSubmit}>เพิ่มข้อมูล</button>
 
 
