@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -32,7 +31,7 @@ const Index = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [googleSheetsUrl, setGoogleSheetsUrl] = useState('');
+  const [googleSheetsUrl, setGoogleSheetsUrl] = useState('https://script.google.com/macros/s/AKfycbxj_aWX55d9o-dBCpA44KDIMkBuhnuFFBC9KDFUWCJNkakMP-iOkez5sR6lgjoJ9uHajQ/exec');
 
   // คำนวณระยะทางอัตโนมัติ
   const calculateDistance = (startMileage: number, endMileage: number) => {
@@ -192,8 +191,8 @@ const Index = () => {
                   placeholder="กรุณากรอก URL ของ Google Sheets Web App"
                   className="text-lg p-3"
                 />
-                <p className="text-sm text-gray-500">
-                  💡 วิธีการ: สร้าง Google Apps Script Web App และนำ URL มาใส่ที่นี่
+                <p className="text-sm text-green-600">
+                  ✅ เชื่อมต่อแล้ว - พร้อมบันทึกข้อมูลลง Google Sheets
                 </p>
               </div>
 
