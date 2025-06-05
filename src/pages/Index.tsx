@@ -12,7 +12,7 @@ import SubmitButton from '@/components/SubmitButton';
 import UsageInstructions from '@/components/UsageInstructions';
 
 async function handleSubmit() {
-  const response = await fetch("https://script.google.com/macros/s/AKfycbxj_aWX55d9o-dBCpA44KDIMkBuhnuFFBC9KDFUWCJNkakMP-iOkez5sR6lgjoJ9uHajQ/exec", {
+  const response = await fetch("https://script.google.com/macros/s/AKfycbxKw0IF1HnVlMCEUtIJCNLJwVVAsUOYvufYckX_G6-roOldggEpdprSZfpY0TIOr60Nhg/exec", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
