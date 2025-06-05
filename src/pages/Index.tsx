@@ -28,7 +28,7 @@ async function handleSubmit() {
 })
 
     })
-  });
+  })
 
   const result = await response.text();
   console.log("ผลลัพธ์จาก Google Apps Script:", result);
