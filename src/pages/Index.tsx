@@ -77,26 +77,26 @@ const Index = () => {
                 <StartPointSection
                   startDateTime={formData.startDateTime}
                   startLocation={formData.startLocation}
-                  startMileage={formData.startMileage}
+                  startMileage={formData.startOdometer}
                   onDateTimeChange={(value) => handleInputChange('startDateTime', value)}
                   onLocationChange={(value) => handleInputChange('startLocation', value)}
-                  onMileageChange={(value) => handleInputChange('startMileage', value)}
+                  onMileageChange={(value) => handleInputChange('startOdometer', value)}
                 />
 
                 <EndPointSection
                   endDateTime={formData.endDateTime}
                   endLocation={formData.endLocation}
-                  endMileage={formData.endMileage}
+                  endMileage={formData.endOdometer}
                   onDateTimeChange={(value) => handleInputChange('endDateTime', value)}
                   onLocationChange={(value) => handleInputChange('endLocation', value)}
-                  onMileageChange={(value) => handleInputChange('endMileage', value)}
+                  onMileageChange={(value) => handleInputChange('endOdometer', value)}
                 />
               </div>
 
               <DistanceDisplay
                 distance={formData.distance}
-                startMileage={formData.startMileage}
-                endMileage={formData.endMileage}
+                startMileage={formData.startOdometer}
+                endMileage={formData.endOdometer}
               />
 
               <SubmitButton isSubmitting={isSubmitting} />
