@@ -17,14 +17,14 @@ async function handleSubmit() {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({
+     body: JSON.stringify({
       projectName: "โครงการทดลอง",
       startDateTime: "2025-06-05T08:00:00",
       startLocation: "สำนักงานใหญ่",
-      startMileage: 15000,
+      startOdometer: 15000,
       endDateTime: "2025-06-05T17:30:00",
-      endLocation: "โกดังสินค้า",
-      endMileage: 15125
+      endLocation: "โกดัง",
+      endOdometer: 15125
     }) // ✅ วงเล็บปิดของ JSON.stringify()
   }); // ✅ วงเล็บปิดของ fetch()
 
