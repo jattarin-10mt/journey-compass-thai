@@ -1,13 +1,12 @@
-// vite.config.ts
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc' // ใช้ swc ตัวเดียวพอ
-import path from 'path'
-import { componentTagger } from 'lovable-tagger'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
+import path from 'path';
+import { componentTagger } from 'lovable-tagger';
 
 export default defineConfig(({ mode }) => ({
-  base: '/journey-compass-thai/', // 👈 สำคัญ! ต้องใส่เพื่อให้ GitHub Pages รู้ path
+  base: '/journey-compass-thai/',
   server: {
-    host: "::",
+    host: '::',
     port: 8080,
   },
   plugins: [
@@ -16,7 +15,7 @@ export default defineConfig(({ mode }) => ({
   ].filter(Boolean),
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
-}))
+}));
