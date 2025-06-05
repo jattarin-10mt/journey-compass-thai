@@ -10,7 +10,7 @@ import DistanceDisplay from '@/components/DistanceDisplay';
 import SubmitButton from '@/components/SubmitButton';
 import UsageInstructions from '@/components/UsageInstructions';
 
-const Index = () => {
+const Index: React.FC = () => {
   const {
     formData,
     isSubmitting,
@@ -18,10 +18,10 @@ const Index = () => {
     handleInputChange,
     validateForm,
     submitToGoogleSheets,
-    toast
+    toast,
   } = useTravelForm();
 
-  const [googleSheetsUrl, setGoogleSheetsUrl] = useState(
+  const [googleSheetsUrl, setGoogleSheetsUrl] = useState<string>(
     'https://script.google.com/macros/s/AKfycbxj_aWX55d9o-dBCpA44KDIMkBuhnuFFBC9KDFUWCJNkakMP-iOkez5sR6lgjoJ9uHajQ/exec'
   );
 
@@ -31,25 +31,34 @@ const Index = () => {
     const validationError = validateForm();
     if (validationError) {
       toast({
-        title: "กรุณาตรวจสอบข้อมูล",
+        title: 'กรุณาตรวจสอบข้อมูล',
         description: validationError,
-        variant: "destructive",
+        variant: 'destructive',
       });
       return;
     }
 
     if (!googleSheetsUrl.trim()) {
       toast({
-        title: "กรุณาตรวจสอบข้อมูล",
-        description: "กรุณากรอก Google Sheets URL เพื่อบันทึกข้อมูลค่ะ",
-        variant: "destructive",
+        title: 'กรุณาตรวจสอบข้อมูล',
+        description: 'กรุณากรอก Google Sheets URL เพื่อบันทึกข้อมูลค่ะ',
+        variant: 'destructive',
       });
       return;
     }
 
-    setIsSubmitting(true);
-    await submitToGoogleSheets(googleSheetsUrl);
-    setIsSubmitting(false);
+    try {
+      setIsSubmitting(true);
+      await submitToGoogleSheets(googleSheetsUrl);
+    } catch (error) {
+      toast({
+        title: 'เกิดข้อผิดพลาด',
+        description: 'ไม่สามารถส่งข้อมูลไปยัง Google Sheets ได้',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -60,51 +69,57 @@ const Index = () => {
 
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Input Google Sheets URL */}
-              <GoogleSheetsUrlInput 
+              <GoogleSheetsUrlInput
                 googleSheetsUrl={googleSheetsUrl}
                 setGoogleSheetsUrl={setGoogleSheetsUrl}
               />
 
-              {/* Input ชื่อโปรเจกต์ */}
               <ProjectNameInput
                 value={formData.projectName}
                 onChange={(value) => handleInputChange('projectName', value)}
               />
 
-              {/* จุดเริ่มต้น และ จุดสิ้นสุด */}
               <div className="grid md:grid-cols-2 gap-6">
                 <StartPointSection
                   startDateTime={formData.startDateTime}
                   startLocation={formData.startLocation}
                   startMileage={formData.startOdometer}
-                  onDateTimeChange={(value) => handleInputChange('startDateTime', value)}
-                  onLocationChange={(value) => handleInputChange('startLocation', value)}
-                  onMileageChange={(value) => handleInputChange('startOdometer', value)}
+                  onDateTimeChange={(value) =>
+                    handleInputChange('startDateTime', value)
+                  }
+                  onLocationChange={(value) =>
+                    handleInputChange('startLocation', value)
+                  }
+                  onMileageChange={(value) =>
+                    handleInputChange('startOdometer', value)
+                  }
                 />
 
                 <EndPointSection
                   endDateTime={formData.endDateTime}
                   endLocation={formData.endLocation}
                   endMileage={formData.endOdometer}
-                  onDateTimeChange={(value) => handleInputChange('endDateTime', value)}
-                  onLocationChange={(value) => handleInputChange('endLocation', value)}
-                  onMileageChange={(value) => handleInputChange('endOdometer', value)}
+                  onDateTimeChange={(value) =>
+                    handleInputChange('endDateTime', value)
+                  }
+                  onLocationChange={(value) =>
+                    handleInputChange('endLocation', value)
+                  }
+                  onMileageChange={(value) =>
+                    handleInputChange('endOdometer', value)
+                  }
                 />
               </div>
 
-              {/* แสดงระยะทาง */}
               <DistanceDisplay
                 distance={formData.distance}
                 startMileage={formData.startOdometer}
                 endMileage={formData.endOdometer}
               />
 
-              {/* ปุ่มส่งฟอร์ม */}
               <SubmitButton isSubmitting={isSubmitting} />
             </form>
 
-            {/* คำแนะนำการใช้งาน */}
             <UsageInstructions />
           </CardContent>
         </Card>
